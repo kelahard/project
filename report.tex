@@ -1,0 +1,216 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+%\documentclass[11pt]{article} % use larger type; default would be 10pt
+%---==================
+%\documentclass[12pt, a4paper, oneside]{article}%{Thesis} % Paper size, default font size and one-sided paper
+\documentclass[12pt, a4paper]{article}%{Thesis} % Paper size, default font size and one-sided paper
+
+%\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
+
+\usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+%\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+%\hypersetup{urlcolor=black, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+%\title{\ttitle} % Defines the thesis title - don't touch this
+
+\usepackage{setspace}
+%\usepackage{vmargin}
+
+\RequirePackage[utf8]{inputenc} % Allows the use of international characters (e.g. Umlauts)
+%----------------------------------------------------------------------------------------
+%	MARGINS
+%----------------------------------------------------------------------------------------
+%\setmarginsrb  { 1.5in}  % left margin
+%--\setmarginsrb  { 0.6in}  % left margin
+                        %--{ 0.6in}  % top margin
+                        %{ 0.50in}  % right margin
+                       %-- { 0.1in}  % right margin
+                        %--{ 0.6in}  % bottom margin
+                        %--{  10pt}  % head height
+                        %--{0.25in}  % head sep
+                        %--{   6pt}  % foot height
+                        %--{ 0.3in}  % foot sep
+%----------------------------------------------------------------------------------------
+\usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,xspace}
+\theoremstyle{plain}
+%============
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{listings}
+\usepackage{lstpatch}
+\lstset{captionpos=b,
+        frame=tb,
+        basicstyle=\scriptsize\ttfamily,
+        showstringspaces=false,
+        keepspaces=true}
+\lstdefinestyle{matlab} {
+        language=Matlab,
+        keywordstyle=\color{blue},
+        commentstyle=\color[rgb]{0.13,0.55,0.13}\em,
+        stringstyle=\color[rgb]{0.7,0,0} }
+\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
+   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
+   colorlinks,linkcolor={black},citecolor={blue},urlcolor={red},%colorlinks,linkcolor={blue},citecolor={blue},urlcolor={red},
+   pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
+%============
+%---==================
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+\geometry{margin=0.7in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+%\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+%\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+%\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+%%%---\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+%%%---\pagestyle{fancy} % options: empty , plain , fancy
+%%%---\renewcommand{\headrulewidth}{0pt} % customise the layout...
+%%%---\lhead{}\chead{}\rhead{}
+%%%---\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+%\usepackage{sectsty}
+%\title
+% \linespread{1.5}  
+
+%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+%\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+%\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+%\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+%\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{ \bfseries  \LARGE Modeling antenna primary beams using characteristic basis function patterns}
+
+
+\begin{document}
+\maketitle
+
+
+
+\subsection{Abstract}
+
+Accurate modeling of the antenna primary beam response (also known as the antenna radiation pattern) is important in many wireless applications, but is particularly crucial for the next generation of radio telescopes, since they offer unprecedented levels of sensitivity, at which even the most subtle instrumental effects become important. Electromagnetic and optical simulations can only provide a first-order model; real-life patterns differ from this due to various subtle effects such as (a priori unknown) mechanical deformation, etc. Ideally, a parameterized model is required, so that these effects can be calibrated for in a closed-loop manner. Instances of actual patterns can be measured through a process known as holography, but this is subject to noise, radio frequency interference, and other measurement effects. We present a set of holography measurements for a subset of dishes of the Karl G. Jansky Very Large Array telescope (JVLA, US), and discuss the problem of using these measurements to derive parameterized models of the primary beam. We show that the beams exhibit complicated frequency behaviour due to standing waves (resonance) in the optics, particularly in the polarization terms. We discuss the potential application of a technique called characteristic basis function patterns (CBFPs) to these data, which offers the possibility of deriving a parameterized model that can accommodate subtle variations in the beam pattern.\\
+
+\noindent We start off with an initial model of the primary beam as:
+
+\begin{equation}
+E_{model}(l, m, v) = T_v \left[ \sum_{i=1}^{N}C_i \bullet B_i(l, m)\right]
+\end{equation}
+
+$C_i \Leftrightarrow C_i(ant,v)$, $B_i$ is the basis function set.
+\\where $T_v$ operator is a combination of :
+\begin{enumerate}%{enumerate} \item[$\Delta$] [$\rhd$]
+\item [$\rhd$]Shift in the beams axis: \begin{equation}
+E^`(l, m, v) =  E(l - l_0(v)), (m - m_0(v))
+\end{equation} 	
+where $l_0$ and $m_0$ are the center co-ordinates.
+\begin{equation}
+\left[\begin{array}{ccc}
+l_{shift} \\ m_{shift} \\ 1
+\end{array}\right]
+=
+\left[\begin{array}{ccc}
+1 & 0 & {\triangle}l\\0 & 1 & {\triangle}m\\0 & 0 & 1
+\end{array}\right]
+\left[\begin{array}{ccc}
+l \\ m\\1
+\end{array}\right]
+%\label{equation11}
+\end{equation}
+
+\item[$\rhd$]  Scale: 
+\begin{equation}
+E^`(l, m, v) =  E(\alpha_v l,\beta_v m)
+\end{equation}
+
+\begin{equation}
+\left[\begin{array}{cc}
+l_{scale} \\ m_{scale}
+\end{array}\right]
+=
+\left[\begin{array}{cc}
+\alpha_v & 0 \\0 & \beta_v
+\end{array}\right]
+\left[\begin{array}{cc}
+l \\  m
+\end{array}\right]
+%\label{equation11}
+\end{equation} 
+
+and  (optionally)
+\item[$\rhd$] Rotation:
+\begin{equation}
+E^`(l, m, v) =  E(l_{rot}(v),m_{rot}(v))
+\end{equation}
+
+\begin{equation}
+\left[\begin{array}{cc}
+l_{rot} \\ m_{rot}
+\end{array}\right]
+=
+\left[\begin{array}{cc}
+\cos\varphi_v & -\sin\varphi_v \\\sin\varphi_v & \cos\varphi_v
+\end{array}\right]
+\left[\begin{array}{cc}
+l \\  m
+\end{array}\right]
+%\label{equation11}
+\end{equation} 
+\end{enumerate}	
+	 
+\begin{enumerate}
+\item Fit $l_0$, $m_0$, $\alpha$, $\beta$, $[\varphi_v]$ as a function of $v$
+\begin{enumerate}
+\item[a.)] Use fitted values directly
+\item[b.)] Find parameterized representation of\\
+ $l_0$, $m_0$, $\alpha$, $\beta$, $[\varphi_v]$
+\end{enumerate}
+This determines $T_v$ operator (transform). Then we need to check if it is similar across antennas and across LL and RR polarizations.
+\item 	 Take all the pre-frequency beams and compute
+\begin{equation}
+\Bigl\lbrace T_v^{-1}\bigl(E_{(mean)}(l, m)\bigl)\Bigl\rbrace_{1000}^{2000}
+\end{equation}
+
+The next step will be to use is to use Andre Young’s approach to derive CBFP (characteristic basis function patterns), $B_i$($l$, $m$). This will involve using a CBFP model and the determined $T_v$ operator in equation (1) to solve for weigthed  $C_i$. 
+
+\item  Finally, look at the $C_i (\text{ant},v)$ determined, compare model with $E_{\text{mean}}$ to evaluate success of our approach we calculate the redidual:
+	\begin{equation*}
+	  \Vert E_{\text{model}}- E_{\text{mean}}\Vert \ll \varepsilon
+	\end{equation*}
+%$\Vert E_{\text{model}}- E_{\text{mean}}\Vert \ll \varepsilon$ 
+for for small $N$.
+\end{enumerate}
+
+
+
+\end{document}
